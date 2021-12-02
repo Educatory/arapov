@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+    <form action="." method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_{{ form.username.name }}">Имя пользователя</label>
+            <input type="text" class="form-control" name="{{ form.username.name }}" id="id_{{ form.username.name }}" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="id_{{ form.password.name }}">Пароль</label>
+            <input type="password" name="{{ form.password.name }}" class="form-control" id="id_{{ form.password.name }}">
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

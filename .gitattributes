@@ -1,0 +1,3 @@
+static_src/js/main/jquery.min.js -linguist-vendored
+static_src/** linguist-vendored
+*.html linguist-vendored

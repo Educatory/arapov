@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block container %}
+    <div class="row ">
+        <div class="col-md-12 col-lg-6 offset-lg-3">
+
+            {% include 'includes/bootstrap4_form_title.html' with form_title=form.get_form_title %}
+            {% include 'includes/bootstrap4_form_description.html' with form_description=form.get_form_description %}
+
+            <div class="alert alert-info" role="alert">
+                <h3>Пользователи системы:</h3>
+                <ul>
+                    <li>Администратор: admin admin123</li>
+                    <li>Студент: student student</li>
+                    <li>Педагог: teacher teacher</li>
+                    <li>Методист: metodic metodic</li>
+                    <li>Супер-вайзер: supervisor supervisor</li>
+                </ul>
+            </div>
+
+            {% include 'includes/bootstrap4_form_messages.html' %}
+
+            <form method="post">
+                {% include 'includes/bootstrap4_form.html' with form=form %}
+                {% include 'includes/bootstrap4_form_submit.html' with button_title='Войти' button_icon="fas fa-sign-in-alt" %}
+            </form>
+
+            {% include "includes/bootstrap4_form_helpbuttons.html" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        "use strict";
+        $(function() {
+            if ($('input[name="email"]').val()) {
+                setTimeout(function() { $('input[name="password"]').focus() }, 500);
+            }
+        });
+    </script>
+{% endblock %}

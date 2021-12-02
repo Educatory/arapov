@@ -1,0 +1,138 @@
+{% load sass_tags compress static cookie %}
+{% cookie "role" as role %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% firstof page_title object.title object.name %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    {% compress css %}
+        <link href="{% static "css/icomoon/styles.min.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% sass_src "scss/style.scss" %}" rel="stylesheet" type="text/css">
+    {% endcompress %}
+
+    {% compress js %}
+        <script src="{% static "js/main/jquery.min.js" %}"></script>
+        <script src="{% static "js/main/bootstrap.bundle.min.js" %}"></script>
+
+        <script src="{% static "js/plugins/cookie/js.cookie-2.2.1.min.js" %}"></script>
+
+        <script src="{% static "js/app.js" %}"></script>
+    {% endcompress %}
+</head>
+{% block body %}
+    <body>
+
+    {% block main_nav %}
+        <div class="navbar navbar-expand-lg navbar-dark navbar-static shadow-none justify-content-between">
+            <div class="d-flex flex-1 d-lg-none">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+                    <i class="icon-paragraph-justify3"></i>
+                    <span class="badge badge-mark border-warning-100 m-1"></span>
+                </button>
+            </div>
+
+            <div class="navbar-brand wmin-0 mr-lg-5">
+                <a href="index.html" class="d-inline-block">
+                    <img src="{% static "img/logo_white.png" %}" class="d-none d-sm-block" alt="">
+                </a>
+            </div>
+            <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-grow-1 justify-content-end align-items-center">
+                <li class="nav-item mr-auto">
+                    <div class="navbar-text d-flex flex-column f20">
+                        <div class="mb-1">
+                            <i class="icon-calendar mr-2 text-teal-100"></i>{% now "j E Y " %} года | {% now 'W' %} неделя
+                        </div>
+                        <div>
+                            <i class="icon-watch2 mr-2 text-teal-100"></i>
+                            <span id="clock_live">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item flex-grow-1">
+                    <form class="mb-3 mb-xl-0 row w-50 ml-auto mr-5">
+                            <label class="col-5 col-form-label text-right f20">Пример роли:</label>
+                            <div class="col-7 flex-fill">
+                                {% csrf_token %}
+
+                                <select id="role_selector" class="form-control wmin-xl-300 f20 border-teal">
+                                    <option value="ADMIN" {% if role == "ADMIN" %}selected{% endif %}>Администратор</option>
+                                    <option value="OPERATOR" {% if role == "OPERATOR" %}selected{% endif %}>Оператор</option>
+                                    <option value="CURATOR" {% if role == "CURATOR" %}selected{% endif %}>Куратор</option>
+                                </select>
+                            </div>
+                    </form>
+                </li>
+
+                <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100 f20">
+                    <a href="#" class="navbar-nav-link navbar-nav-link-toggler d-inline-flex align-items-center h-100 dropdown-toggle" data-toggle="dropdown">
+                        <span class="d-none d-lg-inline-block ml-2">{{ request.user }}</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right ">
+                        <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> Профиль</a>
+                        <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Сообщения
+                            <span class="badge badge-primary badge-pill ml-auto">58</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Настройки</a>
+                        <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Выход</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    {% endblock %}
+
+
+    {% block second_nav %}
+        <div class="navbar navbar-expand navbar-light sticky-top px-0 px-lg-3">
+            <div class="overflow-auto overflow-lg-visible scrollbar-hidden flex-1">
+                <ul class="navbar-nav flex-row text-nowrap">
+                    <li class="nav-item">
+                        <a href="." class="navbar-nav-link">
+                            <i class="icon-home4 mr-2"></i>
+                            Главная
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block page_header %}
+        <div class="page-header">
+            <div class="page-header-content header-elements-lg-inline">
+                <div class="page-title d-flex">
+                    <h3>
+                        <button type="button" class="btn btn-primary btn-icon mr-2"><i class="{{ page_icon }}"></i></button>
+                        {% firstof page_title object.title object.name %}</h3>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+
+    <div class="page-content pt-0">
+        <div class="content-wrapper">
+            <div class="content">
+                {% block page_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-expand-lg navbar-light">
+        <div class="navbar-collapse collapse" id="navbar-third">
+			<span class="navbar-text">
+				&copy; 2100 - 2200. <a href="https://educatary.org">Educatory Team</a>
+			</span>
+        </div>
+    </div>
+
+    </body>
+{% endblock %}
+</html>

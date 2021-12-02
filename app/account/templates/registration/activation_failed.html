@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-md-12 col-lg-8 offset-lg-2">
+            <h2 class="m-3">Ошибка активации</h2>
+            <p>
+                {{ activation_error.message }}
+            </p>
+            {% if activation_error.code == 'already_activated' %}
+
+            {% elif activation_error.code == 'bad_username' %}
+                <p>
+                    Вы можете создать аккаунт по данной <a href="{% url "django_registration_register" %}">ссылке</a>.
+                </p>
+            {% elif activation_error.code == 'invalid_key' %}
+                <p>
+                    Вы можете запросить повторуную активацию аккаунта по <a href="{% url "django_registration_activation_resend" %}">ссылке</a>.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

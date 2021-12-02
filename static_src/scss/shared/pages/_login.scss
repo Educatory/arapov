@@ -1,0 +1,58 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Login and related forms
+ *
+ *  Styles related to user login - logins, registration, password recovery, unlock etc.
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-login {
+
+    .bg-login-page {
+        position: relative;
+        z-index:1;
+        overflow:hidden;
+        &:before{
+            position:absolute;
+            left:0;
+            top:0;
+            content: url("../img/bg-login-page.jpg");
+            //opacity:0.2;
+        }
+
+    }
+    .card-login-page {
+
+        h1 {
+            font-size: 78px;
+            border-bottom: 4px solid $primary;
+
+        }
+        .card-body {
+            font-size: 32px;
+        }
+    }
+
+    // Form
+    .login-form {
+        width: 100%;
+
+        // Tabs
+        .nav-item {
+            @if $enable-rounded {
+                &:first-child .nav-link {
+                    border-top-left-radius: $card-inner-border-radius;
+                }
+                &:last-child .nav-link {
+                    border-top-right-radius: $card-inner-border-radius;
+                }
+            }
+        }
+
+        // Set a fixed width for desktop browsers
+        @include media-breakpoint-up(sm) {
+            width: $login-form-width;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block container %}
+
+    <div class="row">
+        <div class="col-md-12 col-lg-6 offset-lg-3">
+
+            {% include 'includes/bootstrap4_form_title.html' with form_title=form.get_form_title %}
+            {% include 'includes/bootstrap4_form_description.html' with form_description=form.get_form_description %}
+            {% include 'includes/bootstrap4_form_messages.html' %}
+
+            <form method="post">
+                {% include 'includes/bootstrap4_form.html' with form=form %}
+                {% include 'includes/bootstrap4_form_submit.html' with button_title='Отправить' button_icon="fad fa-paper-plane" %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,140 @@
+
+//
+// Core settings
+// ------------------------------
+//
+
+$icon-font-family:  'icomoon' !default;
+$icon-font-size:    1rem !default;
+
+
+
+//
+// Layout
+// ------------------------------
+//
+
+//** Sidebar navigation types
+$enable-sidebar-nav-icons-reverse:	  true !default;
+$enable-sidebar-nav-bordered:		  true !default;
+
+//** Boxed layouts
+$enable-boxed:						  false !default;
+
+//** Flash of unstyled content (FOUC) fix for jQuery 3.*
+$enable-fouc-fix:					  true !default;
+
+
+//
+// Components
+// ------------------------------
+//
+
+//** UI things
+$enable-header-elements:			  true !default;
+$enable-headroom:					  true !default; // only in static layout
+$enable-slinky:						  true !default;
+$enable-ripple:						  false !default;
+
+
+//** Forms
+$enable-select2:					  true !default;
+$enable-multiselect:				  true !default;
+
+$enable-typeahead:					  true !default;
+$enable-passy:						  true !default;
+$enable-validation:					  true !default;
+$enable-alpaca:						  true !default;
+$enable-wizard:						  true !default;
+$enable-dual-listbox:				  true !default;
+$enable-touchspin:					  true !default;
+$enable-floating-labels:			  true !default;
+
+$enable-tags-input:					  true !default;
+$enable-tokenfield:					  true !default;
+
+
+//** Editors
+$enable-summernote:					  true !default;
+$enable-trumbowyg:					  false !default;
+$enable-ace:						  false !default;
+
+
+//** Pickers
+$enable-daterange:					  true !default;
+$enable-pickadate:					  false !default;
+$enable-spectrum:					  false !default;
+
+
+//** File uploaders
+$enable-plupload:					  false !default;
+$enable-fileinput:					  false !default;
+$enable-dropzone:					  true !default;
+
+
+//** Notifications
+$enable-pnotify:					  false !default;
+$enable-noty:						  true !default;
+$enable-jgrowl:						  false !default;
+$enable-sweetalert:					  false !default;
+
+
+//** Sliders
+$enable-noui:						  false !default;
+$enable-ion:						  false !default;
+
+
+//** Charts
+$enable-charts:						  false !default;
+$enable-d3:							  false !default;
+$enable-c3:							  false !default;
+
+
+//** Maps
+$enable-google-maps:				  false !default;
+$enable-vector-maps:				  false !default;
+
+
+//** jQuery UI
+$enable-jqueryui:					  false !default;
+$enable-jqueryui-pips:				  false !default;
+
+
+//** Tables
+$enable-datatable:					  true !default;
+$enable-datatable-select:			  true !default;
+$enable-datatable-scroller:			  true !default;
+$enable-datatable-row-reorder:		  true !default;
+$enable-datatable-responsive:		  true !default;
+$enable-datatable-keytable:			  true !default;
+$enable-datatable-fixed-columns:	  true !default;
+$enable-datatable-colreorder:		  true !default;
+$enable-datatable-buttons:			  true !default;
+$enable-datatable-autofill:			  true !default;
+
+$enable-footable:					  true !default;
+
+
+//** Page kits
+$enable-blog:						  false !default;
+$enable-timeline:					  false !default;
+$enable-login:						  true !default;
+$enable-error:						  false !default;
+$enable-profile:					  false !default;
+$enable-tasks:						  false !default;
+$enable-inbox:						  false !default;
+$enable-chat:						  false !default;
+$enable-ecommerce:					  false !default;
+
+
+//** Misc
+$enable-fab:						  true !default;
+$enable-glightbox:					  true !default;
+$enable-fancytree:					  true !default;
+$enable-fullcalendar:				  true !default;
+$enable-image-cropper:				  true !default;
+$enable-ladda:						  true !default;
+$enable-pace:						  false !default;
+$enable-dragula:					  true !default;
+$enable-prism:						  true !default;
+$enable-demo:						  false !default;

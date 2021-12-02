@@ -1,0 +1,8 @@
+@mixin font-sizes($start, $end, $step)  {
+    @for $i from $start through ceil($end/$step) {
+        $value: ($i - 1)*$step;
+        .f#{$value} {
+            font-size: #{$value}px;
+        }
+    }
+}
