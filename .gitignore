@@ -5,7 +5,6 @@ touchme
 .idea
 /static/
 *.pyc
-/media/
 /datasets/
 .ipynb_checkpoints/
 /api/img_dir/
