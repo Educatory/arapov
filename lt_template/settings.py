@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'app.dashboard',
     'app.notify',
     'app.sentinel',
+    'app.oilpipline',
 ]
 
 MIDDLEWARE = [

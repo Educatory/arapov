@@ -11,7 +11,8 @@
             </div>
             <script>
                 function map_init(map, options) {
-                    {% include 'dashboard/_includes/_leaflet_config.html' with boxes=boxes %}
+                    {% include 'dashboard/_includes/_leaflet_config.html' with boxes=boxes olis=olis %}
+
                 }
             </script>
         </div>
