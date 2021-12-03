@@ -1,5 +1,6 @@
-{% load sass_tags compress static cookie %}
+{% load sass_tags compress static cookie leaflet_tags %}
 {% cookie "role" as role %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -13,6 +14,7 @@
     {% compress css %}
         <link href="{% static "css/icomoon/styles.min.css" %}" rel="stylesheet" type="text/css">
         <link href="{% sass_src "scss/style.scss" %}" rel="stylesheet" type="text/css">
+        {% leaflet_css %}
     {% endcompress %}
 
     {% compress js %}
@@ -22,6 +24,7 @@
         <script src="{% static "js/plugins/cookie/js.cookie-2.2.1.min.js" %}"></script>
 
         <script src="{% static "js/app.js" %}"></script>
+        {% leaflet_js %}
     {% endcompress %}
 </head>
 {% block body %}
@@ -37,7 +40,7 @@
             </div>
 
             <div class="navbar-brand wmin-0 mr-lg-5">
-                <a href="index.html" class="d-inline-block">
+                <a href="{% url "dashboard:index" %}" class="d-inline-block">
                     <img src="{% static "img/logo_white.png" %}" class="d-none d-sm-block" alt="">
                 </a>
             </div>
@@ -57,16 +60,16 @@
 
                 <li class="nav-item flex-grow-1">
                     <form class="mb-3 mb-xl-0 row w-50 ml-auto mr-5">
-                            <label class="col-5 col-form-label text-right f20">Пример роли:</label>
-                            <div class="col-7 flex-fill">
-                                {% csrf_token %}
+                        <label class="col-5 col-form-label text-right f20">Пример роли:</label>
+                        <div class="col-7 flex-fill">
+                            {% csrf_token %}
 
-                                <select id="role_selector" class="form-control wmin-xl-300 f20 border-teal">
-                                    <option value="ADMIN" {% if role == "ADMIN" %}selected{% endif %}>Администратор</option>
-                                    <option value="OPERATOR" {% if role == "OPERATOR" %}selected{% endif %}>Оператор</option>
-                                    <option value="CURATOR" {% if role == "CURATOR" %}selected{% endif %}>Куратор</option>
-                                </select>
-                            </div>
+                            <select id="role_selector" class="form-control wmin-xl-300 f20 border-teal">
+                                <option value="ADMIN" {% if role == "ADMIN" %}selected{% endif %}>Администратор</option>
+                                <option value="OPERATOR" {% if role == "OPERATOR" %}selected{% endif %}>Оператор</option>
+                                <option value="CURATOR" {% if role == "CURATOR" %}selected{% endif %}>Куратор</option>
+                            </select>
+                        </div>
                     </form>
                 </li>
 

@@ -6,3 +6,5 @@ touchme
 /static/
 *.pyc
 /media/
+/datasets/
+.ipynb_checkpoints/
