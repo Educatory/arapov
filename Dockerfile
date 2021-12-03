@@ -30,6 +30,7 @@ RUN apt-get update \
   gdal-bin \
   libgdal-dev \
   tzdata \
+  cmake \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 

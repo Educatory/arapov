@@ -46,26 +46,26 @@ services:
     volumes:
       - hackaton-redis:/data
 
-  worker:
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
-      args:
-        STATIC_URL: '/static/'
-    command: celery -A hackaton --app=agrotech.celery:app worker --loglevel=info
-    restart: unless-stopped
-    networks:
-      - hackaton-backend-tier
-    env_file: common.env
-    depends_on:
-      - redis
-    volumes:
-      - ./hackaton/:/app/hackaton:Z,cached
-      - ./templates/:/app/templates:Z,cached
-      # shared volume between worker and api for media
-      - hackaton-media:/app/media
-    environment:
-      - EMAIL_URL=smtp://mailhog:1025
+#  worker:
+#    build:
+#      context: ./
+#      dockerfile: ./Dockerfile
+#      args:
+#        STATIC_URL: '/static/'
+#    command: celery -A hackaton --app=agrotech.celery:app worker --loglevel=info
+#    restart: unless-stopped
+#    networks:
+#      - hackaton-backend-tier
+#    env_file: common.env
+#    depends_on:
+#      - redis
+#    volumes:
+#      - ./hackaton/:/app/hackaton:Z,cached
+#      - ./templates/:/app/templates:Z,cached
+#      # shared volume between worker and api for media
+#      - hackaton-media:/app/media
+#    environment:
+#      - EMAIL_URL=smtp://mailhog:1025
 
 volumes:
   hackaton-db:
