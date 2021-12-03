@@ -1,0 +1,79 @@
+version: '2'
+
+services:
+  api:
+    ports:
+      - 8000:8000
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        STATIC_URL: '/static/'
+    restart: unless-stopped
+    networks:
+      - hackaton-backend-tier
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./hackaton/:/app/hackaton:Z
+      - ./templates/:/app/templates:Z
+      # shared volume between worker and api for media
+      - hackaton-media:/app/media
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file: common.env
+
+  db:
+    image: library/postgres:11.1-alpine
+    ports:
+      - 5435:5435
+    restart: unless-stopped
+    networks:
+      - hackaton-backend-tier
+    volumes:
+      - hackaton-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=hackaton
+      - POSTGRES_PASSWORD=hackaton
+
+  redis:
+    image: library/redis:5.0-alpine
+    ports:
+      - 63793:6379
+    restart: unless-stopped
+    networks:
+      - hackaton-backend-tier
+    volumes:
+      - hackaton-redis:/data
+
+#  worker:
+#    build:
+#      context: ./
+#      dockerfile: ./Dockerfile
+#      args:
+#        STATIC_URL: '/static/'
+#    command: celery -A hackaton --app=agrotech.celery:app worker --loglevel=info
+#    restart: unless-stopped
+#    networks:
+#      - hackaton-backend-tier
+#    env_file: common.env
+#    depends_on:
+#      - redis
+#    volumes:
+#      - ./hackaton/:/app/hackaton:Z,cached
+#      - ./templates/:/app/templates:Z,cached
+#      # shared volume between worker and api for media
+#      - hackaton-media:/app/media
+#    environment:
+#      - EMAIL_URL=smtp://mailhog:1025
+
+volumes:
+  hackaton-db:
+    driver: local
+  hackaton-redis:
+    driver: local
+  hackaton-media:
+
+networks:
+  hackaton-backend-tier:
+    driver: bridge
