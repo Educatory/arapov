@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'compressor',
     'sass_processor',
+    'leaflet',
 
     # app
     'app.core',
