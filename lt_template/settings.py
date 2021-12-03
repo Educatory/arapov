@@ -28,11 +28,13 @@ INSTALLED_APPS = [
     'compressor',
     'sass_processor',
     'leaflet',
+    'notifications',
 
     # app
     'app.core',
     'app.account',
     'app.dashboard',
+    'app.notify',
 ]
 
 MIDDLEWARE = [
