@@ -2,5 +2,5 @@ var lc = map;
 var boxes = {{ boxes|safe }}
 
 $.each(boxes, function(index, value) {
-   L.imageOverlay(value.imageUrl, value.imageBounds).addTo(map);
+   L.imageOverlay(value.imageUrl, value.imageBounds, {'interactive': true}).addTo(map);
 })
