@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'app.account',
     'app.dashboard',
     'app.notify',
+    'app.sentinel',
 ]
 
 MIDDLEWARE = [
@@ -160,29 +161,38 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 #  ########################################   ##
 #                   LIBSASS                   ##
 #  ########################################   ##
-#
-# LIBSASS_ADDITIONAL_INCLUDE_PATHS = [
-#     os.path.join(BASE_DIR, 'static_src/website/scss/'),
-# ]
-# LIBSASS_OUTPUT_STYLE = 'compressed'
-# LIBSASS_SOURCEMAPS = False
-# LIBSASS_PRECISION = 6
+
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "static_src")
 SASS_PROCESSOR_AUTO_INCLUDE = False
 SASS_PRECISION = 8
 SASS_PROCESSOR_ENABLED = True
 SASS_OUTPUT_STYLE = 'compressed'
-#  ########################################   ##
-#                   COMPRESSOR                ##
-#  ########################################   ##
-# COMPRESS_PRECOMPILERS = (
-#     ('text/x-scss', 'django_libsass.SassCompiler'),
-# )
+
 #  ########################################   ##
 #              CRISPY-FORMS                   ##
 #  ########################################   ##
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#  ########################################   ##
+#              SENTINEL-HUB                   ##
+#  ########################################   ##
+
+SH_CLIENT_ID = '31d94b8d-1a1f-45ce-aee3-e708d69cf0f5'
+SH_CLIENT_SECRET = 'AnpU5L9fv{GL?fD4.tjiwBtpNV{jv_+@h4!Ih>b.'
+
+#  ########################################   ##
+#              DJANGO-LEAFLET                 ##
+#  ########################################   ##
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (64.12, 88.2),
+    'DEFAULT_ZOOM': 4,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18,
+
+    # 'DEFAULT_PRECISION': 12,
+}
 
 try:
     from .local_settings import *

@@ -15,3 +15,5 @@ DATABASES['default']['PORT'] = '6120'
 DATABASES['default']['USER'] = 'hack'
 DATABASES['default']['PASSWORD'] = ''
 
+# SENTINEL-HUB
+SH_CLIENT_SECRET = ''
