@@ -22,10 +22,83 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="row pt-4">
+        <div class="col-sm-6 col-xl-4">
+
+            <!-- Area chart in colored card -->
+            <div class="card bg-indigo text-white has-bg-image">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="font-weight-semibold mb-0">₽ 18,390</h3>
+                        <div class="list-icons ml-auto">
+                            <a class="list-icons-item" data-action="reload"></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        Приблизительный ущерб
+                        <div class="font-size-sm opacity-75">₽ 37,578 макс.</div>
+                    </div>
+                </div>
+
+                <div id="chart_area_color"></div>
+            </div>
+            <!-- /area chart in colored card -->
+
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+
+            <!-- Bar chart in colored card -->
+            <div class="card bg-danger text-white has-bg-image">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="font-weight-semibold mb-0">7450</h3>
+                        <span class="badge badge-dark badge-pill align-self-center ml-auto">+3,6%</span>
+                    </div>
+
+                    <div>
+                        Кол-во спутниковых снимков
+                        <div class="font-size-sm opacity-75">5741 обработано</div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div id="chart_bar_color"></div>
+                </div>
+            </div>
+            <!-- /bar chart in colored card -->
+
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+
+            <!-- Line chart in colored card -->
+            <div class="card bg-primary text-white has-bg-image">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="font-weight-semibold mb-0">0 недель 2 дня</h3>
+                        <div class="list-icons ml-auto">
+                            <a class="list-icons-item" data-action="reload"></a>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <div class="font-size-sm opacity-75">Прошло с первой детекции, и обработанных снимков</div>
+                    </div>
+                </div>
+
+                <div id="line_chart_color"></div>
+            </div>
+            <!-- /line chart in colored card -->
+
+        </div>
 
 
     </div>
-
     <div class="row">
         <div class="col-8">
             {% for img in object.bbox.bboximage_set.all %}
@@ -74,81 +147,7 @@
         </div>
     </div>
 
-    <div class="row pt-4">
-        <div class="col-sm-6 col-xl-4">
 
-            <!-- Area chart in colored card -->
-            <div class="card bg-indigo text-white has-bg-image">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <h3 class="font-weight-semibold mb-0">₽18,390</h3>
-                        <div class="list-icons ml-auto">
-                            <a class="list-icons-item" data-action="reload"></a>
-                        </div>
-                    </div>
-
-                    <div>
-                        Приблизительный ущерб
-                        <div class="font-size-sm opacity-75">₽37,578 макс.</div>
-                    </div>
-                </div>
-
-                <div id="chart_area_color"></div>
-            </div>
-            <!-- /area chart in colored card -->
-
-        </div>
-
-        <div class="col-sm-6 col-xl-4">
-
-            <!-- Bar chart in colored card -->
-            <div class="card bg-danger text-white has-bg-image">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <h3 class="font-weight-semibold mb-0">450</h3>
-                        <span class="badge badge-dark badge-pill align-self-center ml-auto">+53,6%</span>
-                    </div>
-
-                    <div>
-                        Кол-во спутниковых снимков
-                        <div class="font-size-sm opacity-75">294 обработано</div>
-                    </div>
-                </div>
-
-                <div class="container-fluid">
-                    <div id="chart_bar_color"></div>
-                </div>
-            </div>
-            <!-- /bar chart in colored card -->
-
-        </div>
-
-        <div class="col-sm-6 col-xl-4">
-
-            <!-- Line chart in colored card -->
-            <div class="card bg-primary text-white has-bg-image">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <h3 class="font-weight-semibold mb-0">2 недели 6 дня</h3>
-                        <div class="list-icons ml-auto">
-                            <a class="list-icons-item" data-action="reload"></a>
-                        </div>
-                    </div>
-
-                    <div>
-
-                        <div class="font-size-sm opacity-75">Прошло с первой детекции, и обработанных снимков</div>
-                    </div>
-                </div>
-
-                <div id="line_chart_color"></div>
-            </div>
-            <!-- /line chart in colored card -->
-
-        </div>
-
-
-    </div>
 
 
     <!-- Feedback form modal -->
