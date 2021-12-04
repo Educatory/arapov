@@ -12,4 +12,4 @@
 ## Запуск сервисов
 ```docker-compose up -d```
 
-[Go to browser](http://0.0.0.0:8000/)
+[Go to browser](http://localhost:8000/)
