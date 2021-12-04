@@ -1,6 +1,6 @@
 {% extends 'dashboard/base.html' %}
 
-{% load leaflet_tags detections %}
+{% load leaflet_tags detections static %}
 
 {% block page_content %}
 
@@ -9,10 +9,11 @@
             <div class="map-wrapper">
                 {% leaflet_map "arapov" callback="window.map_init" %}
             </div>
+                    <script src="{% static "js/plugins/maps/leaflet/L.Icon.Pulse.js" %}"></script>
+
             <script>
                 function map_init(map, options) {
-                    {% include 'dashboard/_includes/_leaflet_config.html' with boxes=boxes olis=olis %}
-
+                    {% include 'dashboard/_includes/_leaflet_config.html' with boxes=boxes olis=olis detects=detects %}
                 }
             </script>
         </div>

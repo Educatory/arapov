@@ -1,6 +1,9 @@
 var lc = map;
 var boxes = {{ boxes|safe }};
-var olis = {{ olis|safe }}
+var olis = {{ olis|safe }};
+var detects = {{ detects|safe }};
+
+var pulsingIcon = L.icon.pulse({iconSize:[20,20],color:'red'});
 
 var oilStyle = {
     "color": "#000",
@@ -23,7 +26,6 @@ L.geoJSON(value, {
         return new L.LatLng(coords[0], coords[1]);
          },
     style: function (feature) {
-        console.log(feature.properties['detections']);
                 switch (feature.properties['detections']) {
                     case true:
                         return {color: "#ff0000"};
@@ -34,4 +36,8 @@ L.geoJSON(value, {
     }
 ).bindPopup(function (value) {
     return value.feature.properties['name'];}).addTo(map);
+})
+
+$.each(detects, function(index, value){
+    L.marker(value['coords'],{icon: pulsingIcon}).addTo(map);
 })

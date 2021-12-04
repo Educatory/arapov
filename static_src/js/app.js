@@ -586,37 +586,3 @@ const App = function () {
 document.addEventListener('DOMContentLoaded', function () {
     App.initCore();
 });
-
-// When page is fully loaded
-window.addEventListener('load', function () {
-    App.initAfterLoad();
-    $(function () {
-    // Correctly decide between ws:// and wss://
-    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-    var ws_path = ws_scheme + '://' + window.location.host + "/serve/";
-    // console.log("Connecting to " + ws_path);
-    var socket = new ReconnectingWebSocket(ws_path);
-    // Handle incoming messages
-    socket.onmessage = function(message) {
-        // Decode the JSON
-        // console.log("Got message " + message.data);
-        var data = JSON.parse(message.data);
-        /// console.log("Got JSON " + data);
-        // Send to noty
-        noty({
-            timeout: 50000,
-            text: data.html,
-            type: 'confirm',
-            theme: 'metroui',
-            layout: 'bottomRight',
-            progressBar: true,
-        });
-    };
-    socket.onopen = function() {
-        //console.log("Connected to notification socket");
-    }
-    socket.onclose = function() {
-        //console.log("Disconnected to notification socket");
-    }
-});
-});

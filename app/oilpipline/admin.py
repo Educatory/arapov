@@ -12,3 +12,4 @@ class OilPiplineAdmin(admin.ModelAdmin):
     inlines = [DetectionAdminInline]
 
 
+admin.site.register(Detection)

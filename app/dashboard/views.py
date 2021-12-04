@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 
 from app.core.views import DashboardContextMixin
-from app.oilpipline.models import OilPipline
+from app.oilpipline.models import OilPipline, Detection
 from app.sentinel.models import BBox
 
 
@@ -14,6 +14,7 @@ class DashboardIndex(DashboardContextMixin):
         context = super(DashboardIndex, self).get_context_data(**kwargs)
         context.update({
             'boxes': BBox.get_boxes_json(),
-            'olis': OilPipline.get_boxes_json()
+            'olis': OilPipline.get_boxes_json(),
+            'detects': Detection.to_json()
         })
         return context

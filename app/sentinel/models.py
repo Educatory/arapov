@@ -38,4 +38,5 @@ class BBoxImage(TimeStampedModel):
     class Meta:
         verbose_name = 'Изображения BBOX'
         verbose_name_plural = 'Изображения BBOX'
+        ordering = ['-created']
 

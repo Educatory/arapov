@@ -58,7 +58,7 @@ class OilPipline(models.Model):
         return True if self.detections.filter(active=True) else False
 
 
-class Detection(TimeStampedModel, models.Model):
+class Detection(TimeStampedModel):
     """Детекции на объекте"""
     TYPE_DETECTION = (
         ('warning', 'Предупреждение'),
@@ -79,6 +79,15 @@ class Detection(TimeStampedModel, models.Model):
 
     def get_absolut_url(self):
         return reverse('oilpipline:detection', args=[self.pk])
+
+    @staticmethod
+    def to_json():
+        lst = []
+        for item in Detection.objects.filter(active=True):
+            lst.append({
+                'coords': item.geometry
+            })
+        return lst
 
 
 

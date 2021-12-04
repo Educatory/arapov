@@ -101,12 +101,3 @@ for coord in coords:
     bbox_img.image.save(file_name, File(blob_file), save=False)
     bbox_img.save()
 
-# betsiboka_coords_wgs84 = [74.44956331395248, 63.02904804600002, 74.46210459688555, 63.03484056516876]
-
-# betsiboka_bbox = BBox(bbox=betsiboka_coords_wgs84, crs=CRS.WGS84)
-# betsiboka_size = bbox_to_dimensions(betsiboka_bbox, resolution=resolution)
-# print(f'Image shape at {resolution} m resolution: {betsiboka_size} pixels')
-
-
-# plot_image(true_color_imgs[0][:, :, 2], factor=3.5/1e4, vmax=1)
-
