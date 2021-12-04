@@ -1,6 +1,6 @@
 from django.urls import path
 
-from app.dashboard.views import DashboardIndex
+from app.dashboard.views import DashboardIndex, KapotIndex
 
 app_name = 'dashboard'
 
