@@ -21,17 +21,17 @@ const App = function () {
     //
 
     // Disable all transitions
-    const transitionsDisabled = function() {
+    const transitionsDisabled = function () {
         $('body').addClass('no-transitions');
     };
 
     // Enable all transitions
-    const transitionsEnabled = function() {
+    const transitionsEnabled = function () {
         $('body').removeClass('no-transitions');
     };
 
     // Live clock refresh
-    const clockRefresh = function() {
+    const clockRefresh = function () {
         const refresh_time = 1000;
         setTimeout(liveClockUTC, refresh_time)
     };
@@ -42,7 +42,7 @@ const App = function () {
 
     // Custom scrollbar style is controlled by CSS. This function is needed to keep default
     // scrollbars on MacOS and avoid usage of extra JS libraries
-    const detectOS = function() {
+    const detectOS = function () {
         const platform = window.navigator.platform,
             windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
             customScrollbarsClass = 'custom-scrollbars';
@@ -60,7 +60,7 @@ const App = function () {
     //
 
     // Resize main sidebar
-    const sidebarMainResize = function() {
+    const sidebarMainResize = function () {
 
         // Elements
         const sidebarMainElement = $('.sidebar-main'),
@@ -74,47 +74,46 @@ const App = function () {
 
         // Flip 2nd level if menu overflows
         // bottom edge of browser window
-        const flipSubmenu = function() {
+        const flipSubmenu = function () {
 
             // When mouse enters
-            submenuElement.on('mouseenter', function() {
+            submenuElement.on('mouseenter', function () {
                 $(this).addClass(submenuToggleClass);
-                if(($(this).children('.' + navSubmenuClass).offset().top + $(this).find('.' + navSubmenuClass).filter(':visible').outerHeight()) > document.body.clientHeight) {
+                if (($(this).children('.' + navSubmenuClass).offset().top + $(this).find('.' + navSubmenuClass).filter(':visible').outerHeight()) > document.body.clientHeight) {
                     $(this).children('.' + navSubmenuClass).addClass(navSubmenuReversedClass)
                 }
             });
 
             // When mouse leaves
-            submenuElement.on('mouseleave', function() {
+            submenuElement.on('mouseleave', function () {
                 $(this).removeClass(submenuToggleClass);
                 $(this).children('.' + navSubmenuClass).removeClass(navSubmenuReversedClass);
             });
         }
 
         // Toggle classes on click
-        sidebarMainToggler.on('click', function(e) {
+        sidebarMainToggler.on('click', function (e) {
             e.preventDefault();
 
             // Toggle class on sidebar
-            if(!sidebarMainElement.hasClass(resizeClass)) {
+            if (!sidebarMainElement.hasClass(resizeClass)) {
                 sidebarMainElement.addClass(resizeClass);
                 sidebarMainElement.removeClass(sidebarMobileTogglerClass);
                 flipSubmenu();
-            }
-            else {
+            } else {
                 sidebarMainElement.removeClass(resizeClass + ' ' + sidebarMobileTogglerClass);
                 submenuElement.off('mouseenter mouseleave');
             }
         });
 
         // If main sidebar is resized by default
-        if(sidebarMainElement.hasClass(resizeClass)) {
+        if (sidebarMainElement.hasClass(resizeClass)) {
             flipSubmenu();
         }
     };
 
     // Toggle main sidebar
-    const sidebarMainToggle = function() {
+    const sidebarMainToggle = function () {
 
         // Elements
         const sidebarMainElement = $('.sidebar-main'),
@@ -125,13 +124,13 @@ const App = function () {
             sidebarMobileExpandedClass = 'sidebar-mobile-expanded';
 
         // On desktop
-        sidebarMainDesktopToggler.on('click', function(e) {
+        sidebarMainDesktopToggler.on('click', function (e) {
             e.preventDefault();
             sidebarMainElement.toggleClass(sidebarCollapsedClass);
         });
 
         // On mobile
-        sidebarMainMobileToggler.on('click', function(e) {
+        sidebarMainMobileToggler.on('click', function (e) {
             e.preventDefault();
             sidebarMainElement.toggleClass(sidebarMobileExpandedClass);
             sidebarMainRestElements.removeClass(sidebarMobileExpandedClass);
@@ -139,7 +138,7 @@ const App = function () {
     };
 
     // Toggle secondary sidebar
-    const sidebarSecondaryToggle = function() {
+    const sidebarSecondaryToggle = function () {
 
         // Elements
         const sidebarSecondaryElement = $('.sidebar-secondary'),
@@ -150,13 +149,13 @@ const App = function () {
             sidebarMobileExpandedClass = 'sidebar-mobile-expanded';
 
         // On desktop
-        sidebarSecondaryDesktopToggler.on('click', function(e) {
+        sidebarSecondaryDesktopToggler.on('click', function (e) {
             e.preventDefault();
             sidebarSecondaryElement.toggleClass(sidebarCollapsedClass);
         });
 
         // On mobile
-        sidebarSecondaryMobileToggler.on('click', function(e) {
+        sidebarSecondaryMobileToggler.on('click', function (e) {
             e.preventDefault();
             sidebarSecondaryElement.toggleClass(sidebarMobileExpandedClass);
             sidebarSecondaryRestElements.removeClass(sidebarMobileExpandedClass);
@@ -164,7 +163,7 @@ const App = function () {
     };
 
     // Toggle right sidebar
-    const sidebarRightToggle = function() {
+    const sidebarRightToggle = function () {
 
         // Elements
         const sidebarRightElement = $('.sidebar-right'),
@@ -175,13 +174,13 @@ const App = function () {
             sidebarMobileExpandedClass = 'sidebar-mobile-expanded';
 
         // On desktop
-        sidebarRightDesktopToggler.on('click', function(e) {
+        sidebarRightDesktopToggler.on('click', function (e) {
             e.preventDefault();
             sidebarRightElement.toggleClass(sidebarCollapsedClass);
         });
 
         // On mobile
-        sidebarRightMobileToggler.on('click', function(e) {
+        sidebarRightMobileToggler.on('click', function (e) {
             e.preventDefault();
             sidebarRightElement.toggleClass(sidebarMobileExpandedClass);
             sidebarRightRestElements.removeClass(sidebarMobileExpandedClass);
@@ -193,7 +192,7 @@ const App = function () {
     // -------------------------
 
     // Sidebar navigation
-    const navigationSidebar = function() {
+    const navigationSidebar = function () {
 
         // Define default class names and options
         var navClass = 'nav-sidebar',
@@ -206,7 +205,7 @@ const App = function () {
             navSlidingSpeed = 250;
 
         // Configure collapsible functionality
-        $('.' + navClass + ':not(.' + navScrollSpyClass + ')').each(function() {
+        $('.' + navClass + ':not(.' + navScrollSpyClass + ')').each(function () {
             $(this).find('.' + navItemClass).has('.' + navSubmenuClass).children('.' + navItemClass + ' > ' + '.' + navLinkClass).not('.disabled').on('click', function (e) {
                 e.preventDefault();
 
@@ -215,10 +214,9 @@ const App = function () {
                 var $navSidebarMini = $('.sidebar-main-resized:not(.sidebar-mobile-expanded)').find('.' + navClass).children('.' + navItemClass);
 
                 // Collapsible
-                if($target.parent('.' + navItemClass).hasClass(navItemOpenClass)) {
+                if ($target.parent('.' + navItemClass).hasClass(navItemOpenClass)) {
                     $target.parent('.' + navItemClass).not($navSidebarMini).removeClass(navItemOpenClass).children('.' + navSubmenuClass).slideUp(navSlidingSpeed);
-                }
-                else {
+                } else {
                     $target.parent('.' + navItemClass).not($navSidebarMini).addClass(navItemOpenClass).children('.' + navSubmenuClass).slideDown(navSlidingSpeed);
                 }
 
@@ -230,27 +228,27 @@ const App = function () {
         });
 
         // Disable click in disabled navigation items
-        $(document).on('click', '.' + navClass + ' .disabled', function(e) {
+        $(document).on('click', '.' + navClass + ' .disabled', function (e) {
             e.preventDefault();
         });
     };
 
     // Navbar navigation
-    const navigationNavbar = function() {
+    const navigationNavbar = function () {
 
         // Prevent dropdown from closing on click
-        $(document).on('click', '.dropdown-content', function(e) {
+        $(document).on('click', '.dropdown-content', function (e) {
             e.stopPropagation();
         });
 
         // Disabled links
-        $('.navbar-nav .disabled a, .nav-item-levels .disabled').on('click', function(e) {
+        $('.navbar-nav .disabled a, .nav-item-levels .disabled').on('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
         });
 
         // Show tabs inside dropdowns
-        $('.dropdown-content a[data-toggle="tab"]').on('click', function() {
+        $('.dropdown-content a[data-toggle="tab"]').on('click', function () {
             $(this).tab('show');
         });
     };
@@ -260,17 +258,17 @@ const App = function () {
     // -------------------------
 
     // Tooltip
-    const componentTooltip = function() {
+    const componentTooltip = function () {
         $('[data-popup="tooltip"]').tooltip();
     };
 
     // Popover
-    const componentPopover = function() {
+    const componentPopover = function () {
         $('[data-popup="popover"]').popover();
     };
 
     // "Go to top" button
-    const componentToTopButton = function() {
+    const componentToTopButton = function () {
 
         // Elements
         const toTopContainer = $('body'),
@@ -283,25 +281,24 @@ const App = function () {
 
         // Show and hide on scroll
         const to_top_button = $('.btn-to-top'),
-            add_class_on_scroll = function() {
+            add_class_on_scroll = function () {
                 to_top_button.addClass('btn-to-top-visible');
             },
-            remove_class_on_scroll = function() {
+            remove_class_on_scroll = function () {
                 to_top_button.removeClass('btn-to-top-visible');
             };
 
-        scrollableContainer.on('scroll', function() {
+        scrollableContainer.on('scroll', function () {
             const scrollpos = scrollableContainer.scrollTop();
             if (scrollpos >= scrollableDistance) {
                 add_class_on_scroll();
-            }
-            else {
+            } else {
                 remove_class_on_scroll();
             }
         });
 
         // Scroll to top on click
-        $('.btn-to-top .btn').on('click', function() {
+        $('.btn-to-top .btn').on('click', function () {
             scrollableContainer.scrollTop(0);
         });
     };
@@ -311,7 +308,7 @@ const App = function () {
     // -------------------------
 
     // Reload card (uses BlockUI extension)
-    const cardActionReload = function() {
+    const cardActionReload = function () {
 
         // Elements
         const buttonElement = $('[data-action=reload]'),
@@ -322,15 +319,15 @@ const App = function () {
 
 
         // Configure
-        buttonElement.on('click', function(e) {
+        buttonElement.on('click', function (e) {
             e.preventDefault();
 
             // Create overlay with spinner
             $(this).parents(overlayContainer).append($('<div class="' + overlayClass + '"><i class="' + spinnerClass + '"></i></div>'));
 
             // Remove overlay after 2.5s, for demo only
-            setTimeout(function() {
-                $('.' + overlayClass).addClass(overlayAnimationClass).on('animationend animationcancel', function() {
+            setTimeout(function () {
+                $('.' + overlayClass).addClass(overlayAnimationClass).on('animationend animationcancel', function () {
                     $(this).remove();
                 });
             }, 2500);
@@ -338,7 +335,7 @@ const App = function () {
     };
 
     // Collapse card
-    const cardActionCollapse = function() {
+    const cardActionCollapse = function () {
 
         // Elements
         const buttonElement = $('[data-action=collapse]'),
@@ -346,7 +343,7 @@ const App = function () {
             cardCollapsedClass = 'card-collapsed';
 
         // Configure
-        buttonElement.on('click', function(e) {
+        buttonElement.on('click', function (e) {
             e.preventDefault();
 
             const parentContainer = $(this).parents('.card'),
@@ -355,8 +352,7 @@ const App = function () {
             if (parentContainer.hasClass(cardCollapsedClass)) {
                 parentContainer.removeClass(cardCollapsedClass);
                 collapsibleContainer.collapse('show');
-            }
-            else {
+            } else {
                 parentContainer.addClass(cardCollapsedClass);
                 collapsibleContainer.collapse('hide');
             }
@@ -364,21 +360,21 @@ const App = function () {
     };
 
     // Remove card
-    const cardActionRemove = function() {
+    const cardActionRemove = function () {
 
         // Elements
         const buttonElement = $('[data-action=remove]'),
             cardContainer = '.card';
 
         // Configure
-        buttonElement.on('click', function(e) {
+        buttonElement.on('click', function (e) {
             e.preventDefault();
             $(this).parents(cardContainer).slideUp(150);
         });
     };
 
     // Card fullscreen mode
-    const cardActionFullscreen = function() {
+    const cardActionFullscreen = function () {
 
         // Elements
         const buttonElement = '[data-action=fullscreen]',
@@ -390,7 +386,7 @@ const App = function () {
             fullscreenAttr = 'data-fullscreen';
 
         // Configure
-        $(buttonElement).on('click', function(e) {
+        $(buttonElement).on('click', function (e) {
             e.preventDefault();
             const button = $(this);
 
@@ -406,8 +402,7 @@ const App = function () {
                 cardFullscreen.find('.' + collapsedClass).removeClass('show');
                 $(scrollableContainer).removeClass('overflow-hidden');
                 button.parents('.' + buttonContainerClass).find('.' + buttonClass + ':not(' + buttonElement + ')').removeClass('d-none');
-            }
-            else {
+            } else {
                 button.attr(fullscreenAttr, 'active');
                 cardFullscreen.removeAttr('style');
                 cardFullscreen.find('.collapse:not(.show)').addClass('show ' + collapsedClass);
@@ -423,10 +418,10 @@ const App = function () {
     // -------------------------
 
     // Dropdown submenus. Trigger on click
-    const dropdownSubmenu = function() {
+    const dropdownSubmenu = function () {
 
         // All parent levels require .dropdown-toggle class
-        $('.dropdown-menu').find('.dropdown-submenu').not('.disabled').find('.dropdown-toggle').on('click', function(e) {
+        $('.dropdown-menu').find('.dropdown-submenu').not('.disabled').find('.dropdown-toggle').on('click', function (e) {
             e.stopPropagation();
             e.preventDefault();
 
@@ -439,23 +434,23 @@ const App = function () {
             button.parent().toggleClass('show').children('.dropdown-menu').toggleClass('show');
 
             // Hide all levels when parent dropdown is closed
-            button.parents('.show').on('hidden.bs.dropdown', function(e) {
+            button.parents('.show').on('hidden.bs.dropdown', function (e) {
                 $('.dropdown-submenu .show, .dropdown-submenu.show').removeClass('show');
             });
         });
     };
 
     // Header elements toggler
-    const componentHeaderElements = function() {
+    const componentHeaderElements = function () {
 
         // Toggle visible state of header elements
-        $('.header-elements-toggle').on('click', function(e) {
+        $('.header-elements-toggle').on('click', function (e) {
             e.preventDefault();
             $(this).parents('[class*=header-elements-]:not(.header-elements-toggle)').find('.header-elements').toggleClass('d-none');
         });
 
         // Toggle visible state of footer elements
-        $('.footer-elements-toggle').on('click', function(e) {
+        $('.footer-elements-toggle').on('click', function (e) {
             e.preventDefault();
             $(this).parents('.card-footer').find('.footer-elements').toggleClass('d-none');
         });
@@ -470,7 +465,7 @@ const App = function () {
 
     const cookieSetter = function () {
         $('#role_selector').on('change', function () {
-            Cookies.set('role', $( "#role_selector option:selected" ).val());
+            Cookies.set('role', $("#role_selector option:selected").val());
             location.reload();
         })
     };
@@ -511,7 +506,7 @@ const App = function () {
     // Live Clock Ident
     const liveClockUTC = function () {
         const newTime = new Date().toISOString();
-        const newTimeFormatted = newTime.split('T')[1].split('.')[0] + ' GMT' ;
+        const newTimeFormatted = newTime.split('T')[1].split('.')[0] + ' GMT';
         $('#clock_live').html(newTimeFormatted);
         clockRefresh();
     };
@@ -525,17 +520,17 @@ const App = function () {
     return {
 
         // Disable transitions before page is fully loaded
-        initBeforeLoad: function() {
+        initBeforeLoad: function () {
             detectOS();
             transitionsDisabled();
         },
 
         // Enable transitions when page is fully loaded
-        initAfterLoad: function() {
+        initAfterLoad: function () {
             transitionsEnabled();
         },
         // Initialize all components
-        initComponents: function() {
+        initComponents: function () {
             componentTooltip();
             componentPopover();
             componentToTopButton();
@@ -543,7 +538,7 @@ const App = function () {
         },
 
         // Initialize all sidebars
-        initSidebars: function() {
+        initSidebars: function () {
             sidebarMainResize();
             sidebarMainToggle();
             sidebarSecondaryToggle();
@@ -553,13 +548,13 @@ const App = function () {
         },
 
         // Initialize all navigations
-        initNavigations: function() {
+        initNavigations: function () {
             navigationSidebar();
             navigationNavbar();
         },
 
         // Initialize all card actions
-        initCardActions: function() {
+        initCardActions: function () {
             cardActionReload();
             cardActionCollapse();
             cardActionRemove();
@@ -567,12 +562,12 @@ const App = function () {
         },
 
         // Dropdown submenu
-        initDropdowns: function() {
+        initDropdowns: function () {
             dropdownSubmenu();
         },
 
         // Initialize core
-        initCore: function() {
+        initCore: function () {
             App.initBeforeLoad();
             App.initSidebars();
             App.initNavigations();
@@ -588,11 +583,40 @@ const App = function () {
 // ------------------------------
 
 // When content is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     App.initCore();
 });
 
 // When page is fully loaded
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     App.initAfterLoad();
+    $(function () {
+    // Correctly decide between ws:// and wss://
+    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+    var ws_path = ws_scheme + '://' + window.location.host + "/serve/";
+    // console.log("Connecting to " + ws_path);
+    var socket = new ReconnectingWebSocket(ws_path);
+    // Handle incoming messages
+    socket.onmessage = function(message) {
+        // Decode the JSON
+        // console.log("Got message " + message.data);
+        var data = JSON.parse(message.data);
+        /// console.log("Got JSON " + data);
+        // Send to noty
+        noty({
+            timeout: 50000,
+            text: data.html,
+            type: 'confirm',
+            theme: 'metroui',
+            layout: 'bottomRight',
+            progressBar: true,
+        });
+    };
+    socket.onopen = function() {
+        //console.log("Connected to notification socket");
+    }
+    socket.onclose = function() {
+        //console.log("Disconnected to notification socket");
+    }
+});
 });
