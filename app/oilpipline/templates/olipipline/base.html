@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+
+{% load leaflet_tags detections %}
+
+{% block page_content %}
+
+    <div class="row">
+        <div class="col-9">
+            {% block block_content %}
+                <div class="map-wrapper">
+                    {% leaflet_map "arapov" callback="window.map_init" %}
+                </div>
+                <script>
+                    function map_init(map, options) {
+                        {% include 'dashboard/_includes/_leaflet_config.html' with boxes=boxes olis=olis %}
+
+                    }
+                </script>
+            {% endblock block_content %}
+        </div>
+
+        <div class="col-3">
+            <h3>Уведомления</h3>
+            {% get_detections_notify %}
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,13 +1,15 @@
 {% for detection in detections %}
-    <div class="card bg-{{ detection.type }} text-white">
-        <div class="card-header header-elements-inline">
-            <h6 class="card-title">{{ detection.get_type_display }}</h6>
-            <div class="header-elements">
+    <a href="{{ detection.get_absolut_url }}">
+        <div class="card bg-{{ detection.type }} text-white">
+            <div class="card-header header-elements-inline">
+                <h6 class="card-title">{{ detection.get_type_display }}</h6>
+                <div class="header-elements">
 
+                </div>
+            </div>
+            <div class="card-body">
+                <small>Найдена анамальная подозрительность на обекте</small>
             </div>
         </div>
-        <div class="card-body">
-            <small>Найдена анамальная подозрительность на обекте</small>
-        </div>
-    </div>
+    </a>
 {% endfor %}

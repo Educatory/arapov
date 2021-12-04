@@ -1,6 +1,7 @@
 import json
 
 from django.db import models
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django_extensions.db.models import TimeStampedModel
 
@@ -48,7 +49,7 @@ class OilPipline(models.Model):
     def get_detections(self):
         detections = ''
         for detect in self.detections.filter(active=True):
-            detections += f'<span class="badge mb-1 badge-flat border-{detect.type} text-{detect.type}">{detect.get_type_display()}: <a href="#">Участок: {detect.geometry}</a></span>' \
+            detections += f'<span class="badge mb-1 badge-flat border-{detect.type} text-{detect.type}">{detect.get_type_display()}: <a href="{detect.get_absolut_url()}">Участок: {detect.geometry}</a></span>' \
                           f'<br>'
         return detections
 
@@ -75,6 +76,9 @@ class Detection(TimeStampedModel, models.Model):
         verbose_name = 'Детекция'
         verbose_name_plural = "Детекции обнаружения"
         ordering = ['-created']
+
+    def get_absolut_url(self):
+        return reverse('oilpipline:detection', args=[self.pk])
 
 
 
