@@ -71,6 +71,8 @@ class Detection(TimeStampedModel):
     oli = models.ForeignKey(OilPipline, related_name='detections', on_delete=models.CASCADE)
     active = models.BooleanField("Актуальный", default=True, db_index=True)
     geometry = models.JSONField('geometry')
+    bbox = models.ForeignKey('sentinel.BBox', null=True, blank=True, on_delete=models.SET_NULL)
+
 
     class Meta:
         verbose_name = 'Детекция'

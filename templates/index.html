@@ -1,4 +1,7 @@
 {% extends "dashboard/base.html" %}
+
+{% load static %}
+
 {% block body %}
   <body class="bg-secondary">
   <div class="page-content bg-login-page">
@@ -7,12 +10,11 @@
         <div class="content d-flex mr-md-5 mr-0 align-items-center">
           <div class="card card-login-page">
             <div class="card-header">
-              <h1>Арапов</h1>
+              <h1>
+                  <img src="{% static "img/logo_white_2x.png" %}" alt="">
+              </h1>
             </div>
 
-            <div class="card-body">
-                Детекции и анализа нефтеразливов
-            </div>
           </div>
           <!-- Login card -->
           <form class="login-form ml-auto" action="{% url "login" %}" method="post">
