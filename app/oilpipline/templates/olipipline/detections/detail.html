@@ -57,7 +57,8 @@
                 </div>
 
                 <div class="card-footer border-light d-sm-flex justify-content-sm-between align-items-sm-center py-sm-2">
-                    <button type="button" class="btn btn-primary mt-3 mt-sm-0 w-100 w-sm-auto" data-toggle="modal" data-target="#modal_feedback">
+                    <button type="button" class="btn btn-primary mt-3 mt-sm-0 w-100 w-sm-auto" data-toggle="modal"
+                            data-target="#modal_feedback">
                         Сообщить ответственному
                         <i class="icon-paperplane ml-2"></i>
                     </button>
@@ -66,11 +67,89 @@
             <a target="_blank" type="button" href="/static/ReportPDF.pdf" class="f22 btn btn-success w-100 btn-lg">
                 Скачать отчет в PDF <i class="icon-file-pdf"></i>
             </a>
-            <button type="button" class="f22 btn btn-warning w-100 btn-lg  mt-3">
+            <button type="button" class="f22 btn btn-warning w-100 btn-lg  mt-3" data-toggle="modal"
+                    data-target="#modal_bpla">
                 Создать маршрут для БПЛА <i class="icon-airplane2"></i>
             </button>
         </div>
     </div>
+
+    <div class="row pt-4">
+        <div class="col-sm-6 col-xl-4">
+
+            <!-- Area chart in colored card -->
+            <div class="card bg-indigo text-white has-bg-image">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="font-weight-semibold mb-0">₽18,390</h3>
+                        <div class="list-icons ml-auto">
+                            <a class="list-icons-item" data-action="reload"></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        Приблизительный ущерб
+                        <div class="font-size-sm opacity-75">₽37,578 макс.</div>
+                    </div>
+                </div>
+
+                <div id="chart_area_color"></div>
+            </div>
+            <!-- /area chart in colored card -->
+
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+
+            <!-- Bar chart in colored card -->
+            <div class="card bg-danger text-white has-bg-image">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="font-weight-semibold mb-0">450</h3>
+                        <span class="badge badge-dark badge-pill align-self-center ml-auto">+53,6%</span>
+                    </div>
+
+                    <div>
+                        Кол-во спутниковых снимков
+                        <div class="font-size-sm opacity-75">294 обработано</div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div id="chart_bar_color"></div>
+                </div>
+            </div>
+            <!-- /bar chart in colored card -->
+
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+
+            <!-- Line chart in colored card -->
+            <div class="card bg-primary text-white has-bg-image">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="font-weight-semibold mb-0">2 недели 6 дня</h3>
+                        <div class="list-icons ml-auto">
+                            <a class="list-icons-item" data-action="reload"></a>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <div class="font-size-sm opacity-75">Прошло с первой детекции, и обработанных снимков</div>
+                    </div>
+                </div>
+
+                <div id="line_chart_color"></div>
+            </div>
+            <!-- /line chart in colored card -->
+
+        </div>
+
+
+    </div>
+
 
     <!-- Feedback form modal -->
     <div id="modal_feedback" class="modal fade" tabindex="-1">
@@ -111,6 +190,48 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link" data-dismiss="modal">Закрыть</button>
                         <button type="submit" class="btn btn-primary">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="modal_bpla" class="modal  fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Построить маршрут для БПЛА</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <form action="#">
+                    {% load leaflet_tags %}
+
+                    <div class="modal-body">
+                        {% leaflet_map "arapov" callback="window.map_init" %}
+                        <script>
+                            function map_init(map, options) {
+                                {% include 'dashboard/_includes/_leaflet_map_marker.html' with coords=object.geometry %}
+                            }
+                        </script>
+                        <div class="form-group mt-3">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox mb-2">
+                                            <input type="checkbox" class="custom-control-input" id="cc_ls_c" checked>
+                                            <label class="custom-control-label" for="cc_ls_c">Прикрепить отчет</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary">Отправить данные инженерам БПЛА</button>
                     </div>
                 </form>
             </div>
