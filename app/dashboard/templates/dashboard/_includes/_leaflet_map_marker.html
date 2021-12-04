@@ -1,0 +1,4 @@
+var map = L.map('map');
+map.setView({{ coords }}, 5);
+var coords = {{ coords|safe }};
+L.marker(coords).addTo(map);
