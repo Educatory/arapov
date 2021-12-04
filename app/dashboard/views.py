@@ -18,3 +18,8 @@ class DashboardIndex(DashboardContextMixin):
             'detects': Detection.to_json()
         })
         return context
+
+
+class KapotIndex(DashboardIndex):
+    template_name = 'dashboard/index.html'
+    page_title = 'Под капот'
