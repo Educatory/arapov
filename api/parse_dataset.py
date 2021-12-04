@@ -31,7 +31,3 @@ def get_bbox():
         }
         coords.append(c_dict)
     return coords
-
-
-if __name__ == '__main__':
-   get_bbox()

@@ -31,7 +31,6 @@ config.sh_client_secret = 'AnpU5L9fv{GL?fD4.tjiwBtpNV{jv_+@h4!Ih>b.'
 config.save()
 
 coords = get_bbox()
-print(coords)
 def plot_image(image, factor=1.0, clip_range=None, **kwargs):
     """
     Utility function for plotting RGB images.
@@ -72,32 +71,41 @@ for coord in coords:
     resolution = 10
     dirty_bbox = BBox(bbox=coord, crs=CRS.WGS84)
     dirty_bbox_size = bbox_to_dimensions(dirty_bbox, resolution=resolution)
-    request_true_color = SentinelHubRequest(
-        evalscript=evalscript_true_color,
-        input_data=[
-            SentinelHubRequest.input_data(
-                data_collection=DataCollection.SENTINEL2_L2A,
-                time_interval=('2021-11-10', '2021-11-26'),
-            )
-        ],
-        responses=[
-            SentinelHubRequest.output_response('default', MimeType.PNG)
-        ],
-        bbox=dirty_bbox,
-        size=dirty_bbox_size,
-        config=config
-    )
 
-    array_img = request_true_color.get_data()
-    img = Image.fromarray(array_img[0])
+    start_date = datetime.datetime.strptime('2021-05-01', '%Y-%m-%d').date()
+    for dt in range(20):
+        if dt == 0:
+            first_date = start_date
+        else:
+            first_date = second_date
+        second_date = first_date + datetime.timedelta(days=10)
 
-    tf = tempfile.NamedTemporaryFile()
-    file_name = '{}.png'.format(os.path.basename(tf.name))
-    blob_file = BytesIO()
-    img.save(blob_file, 'PNG')
+        request_true_color = SentinelHubRequest(
+            evalscript=evalscript_true_color,
+            input_data=[
+                SentinelHubRequest.input_data(
+                    data_collection=DataCollection.SENTINEL2_L2A,
+                    time_interval=(first_date, second_date),
+                )
+            ],
+            responses=[
+                SentinelHubRequest.output_response('default', MimeType.PNG)
+            ],
+            bbox=dirty_bbox,
+            size=dirty_bbox_size,
+            config=config
+        )
 
-    bbox_img = BBoxImage.objects.create(bbox=arapov_bbox)
+        array_img = request_true_color.get_data()
+        img = Image.fromarray(array_img[0])
 
-    bbox_img.image.save(file_name, File(blob_file), save=False)
-    bbox_img.save()
+        tf = tempfile.NamedTemporaryFile()
+        file_name = '{}.png'.format(os.path.basename(tf.name))
+        blob_file = BytesIO()
+        img.save(blob_file, 'PNG')
+
+        bbox_img = BBoxImage.objects.create(bbox=arapov_bbox, date_start=first_date, date_end=second_date)
+
+        bbox_img.image.save(file_name, File(blob_file), save=False)
+        bbox_img.save()
 

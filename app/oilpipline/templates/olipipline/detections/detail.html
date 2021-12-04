@@ -4,22 +4,46 @@
 
 {% block block_content %}
 
+    <div class="card-group-control card-group-control-right" id="accordion-control-right">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-body" href="#accordion-control-right-group1">
+                        <i class="icon-info22 text-danger mr-3"></i>
+                        Информация
+                    </a>
+                </h5>
+            </div>
 
-    <div class="card border-left-info border-right-info rounded-0">
-        <div class="card-header">
-            <h6 class="card-title">
-                <i class="f24 icon-question3 mr-2"></i> Информация</h6>
+            <div id="accordion-control-right-group1" class="collapse" data-parent="#accordion-control-right">
+                <div class="card-body f18">
+                    Оператор для принятия решения по работе с обнаруженной детекцией получает
+                    данные спутникового изображения в истинном цвете (TrueColor)
+                </div>
+            </div>
         </div>
 
-        <div class="card-body">
-            Оператор, для принятия решения по работе с обнаруженной детекцией получает
-            данные спутникового изображения в истинном цвете (TrueColor)
-        </div>
+
     </div>
 
     <div class="row">
         <div class="col-8">
+            {% for img in object.bbox.bboximage_set.all %}
+                <div class="card">
 
+                    <div class="card-img-actions text-center h-100">
+                        <img class="img-fluid" width="250" src="{{ img.image.url }}" alt="">
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-between">
+                        <span class="font-weight-semibold">{{ img.date_start }} - {{ img.date_end }}</span>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input" id="cc_ls_d-{{ img.id }}">
+                            <label class="custom-control-label" for="cc_ls_d-{{ img.id }}">Прикрепить в отчет</label>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
         <div class="col-4">
             <div class="card">

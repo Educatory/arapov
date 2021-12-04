@@ -35,6 +35,10 @@ class BBoxImage(TimeStampedModel):
     bbox = models.ForeignKey('sentinel.BBox', verbose_name='BBox', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='bbox_img', null=True, blank=True)
 
+    #  DateRange
+    date_start = models.DateField(null=True, blank=True)
+    date_end = models.DateField(null=True, blank=True)
+
     class Meta:
         verbose_name = 'Изображения BBOX'
         verbose_name_plural = 'Изображения BBOX'
