@@ -12,9 +12,18 @@ class DetectionDetail(DetailView):
         return f'Детекция: на {self.object.oli}'
 
 
-
 class DetectionList(ListView):
     model = Detection
     template_name = 'olipipline/detections/list.html'
     page_title = 'Все уведомления'
 
+
+class OilPiplineDetail(DetailView):
+    model = OilPipline
+    template_name = 'olipipline/detail.html'
+
+
+class OilPiplineList(ListView):
+    model = OilPipline
+    template_name = 'olipipline/list.html'
+    page_title = 'Все уведомления'
