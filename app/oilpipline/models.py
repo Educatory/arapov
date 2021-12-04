@@ -2,6 +2,7 @@ import json
 
 from django.db import models
 from django.utils.safestring import mark_safe
+from django_extensions.db.models import TimeStampedModel
 
 
 class OilPipline(models.Model):
@@ -56,17 +57,25 @@ class OilPipline(models.Model):
         return True if self.detections.filter(active=True) else False
 
 
-class Detection(models.Model):
+class Detection(TimeStampedModel, models.Model):
     """Детекции на объекте"""
     TYPE_DETECTION = (
         ('warning', 'Предупреждение'),
         ('danger', 'Опасно'),
+        ('success', 'Успешное обновление'),
+        ('info', 'Запрошены данные'),
 
     )
     type = models.CharField("Тип", choices=TYPE_DETECTION, default='warning', max_length=15)
     oli = models.ForeignKey(OilPipline, related_name='detections', on_delete=models.CASCADE)
     active = models.BooleanField("Актуальный", default=True, db_index=True)
     geometry = models.JSONField('geometry')
+
+    class Meta:
+        verbose_name = 'Детекция'
+        verbose_name_plural = "Детекции обнаружения"
+        ordering = ['-created']
+
 
 
 

@@ -187,7 +187,7 @@ SH_CLIENT_SECRET = 'AnpU5L9fv{GL?fD4.tjiwBtpNV{jv_+@h4!Ih>b.'
 #  ########################################   ##
 
 LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (64.12, 88.2),
+    'DEFAULT_CENTER': (59.12, 74.2),
     'DEFAULT_ZOOM': 4,
     'MIN_ZOOM': 3,
     'MAX_ZOOM': 18,
